@@ -10,4 +10,11 @@ Intall the VM on Azure's [Marketplace](https://azuremarketplace.microsoft.com/en
 
 [Retrieve the password](https://docs.bitnami.com/azure/faq/#how-to-find-application-credentials)
 
-Follow the documentation to find the password needed to log into the VM through SSH.
+### Create a Domain
+Create a Azure webapp.
+Under custom domain, buy a new domain with the illustrated configurations 
+
+==========
+--- CONFIGURING HOST ---
+
+sudo /home/bitnami/apps/discourse/bnconfig --machine_hostname DOMAINNAME
