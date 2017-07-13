@@ -56,7 +56,7 @@ Download certificates
 ./certbot-auto certonly --webroot -w /opt/bitnami/apps/discourse/htdocs/ -d DOMAIN
 ```
 
-Configure Apache tu use the new keys
+Configure Apache tu use the new certificates
 ```
 mv /opt/bitnami/apache2/conf/server.crt /opt/bitnami/apache2/conf/server.crt.bkp
 sudo ln -s /etc/letsencrypt/live/DOMAIN/fullchain.pem /opt/bitnami/apache2/conf/server.crt
