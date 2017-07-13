@@ -70,9 +70,9 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
 ```
-
-### Set Email SMTP
 ### Create Email STMP
 Use [SendGrid](https://azuremarketplace.microsoft.com/it-IT/marketplace/apps/SendGrid.SendGrid) on Azure, whith 25k free emails per month.
-
+### Set Email SMTP
+### Creae a new app on Azure
+[Azure app](https://apps.dev.microsoft.com)
 ### Set Oauth2 for Microsoft
