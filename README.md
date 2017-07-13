@@ -24,7 +24,7 @@ image
 ### Assign the domain to the VM
 Log into the VM through SSH.
 ```
-sudo /home/bitnami/apps/discourse/bnconfig --machine_hostname DOMAINNAME
+sudo /home/bitnami/apps/discourse/bnconfig --machine_hostname DOMAIN
 ```
 
 In /opt/bitnami/apps/discourse/htdocs/config/discourse.conf set
