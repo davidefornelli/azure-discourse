@@ -92,4 +92,8 @@ smtp_password = 'SENDGRID_KEY'
 Generate a Key and save it
 Add as Redirect URL https://DOMAIN/auth/oauth2_basic/callback
 Add as Homepage https://DOMAIN
-### Set Oauth2 for Microsoft
+### VM - Install Oauth plugin
+```
+sudo RAILS_ENV=production bundle exec rake plugin:install repo=https://github.com/discourse/discourse-oauth2-basic.git
+sudo RAILS_ENV=production bundle exec rake assets:precompile
+```
