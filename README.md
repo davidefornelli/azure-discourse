@@ -70,7 +70,8 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
 ```
-### Create Email STMP
+## EMAIL
+### Create SMTP
 Use [SendGrid](https://azuremarketplace.microsoft.com/it-IT/marketplace/apps/SendGrid.SendGrid) on Azure, whith 25k free emails per month.
 Generate a API Key: SendGrid -> Manage -> Settings -> API Keys
 ### Set Email SMTP
