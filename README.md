@@ -32,9 +32,17 @@ In /opt/bitnami/apps/discourse/htdocs/config/discourse.conf set
 hostname = 'DOMAIN'
 ```
 
+
 ### Enable HTTPS
 
 ### Configure Let's Encrypt certificates
+
+This steps are based on the apache
+[Install certbot](https://docs.bitnami.com/azure/components/apache/#how-to-install-the-certbot-client-for-the-lets-encrypt-certificate-authority)
+
+[Generate and install certificate](How to generate and install a Let's Encrypt certificate for your domain using the Certbot client?)
+
+[Renew certificate](How to renew a Let's Encrypt certificate for your domain using the Certbot client?)
 
 Install certbot
 ```
