@@ -18,9 +18,22 @@ Create a Azure webapp.
 Under custom domain, buy a new domain with the illustrated configurations:
 image
 
-### Configure the DNS
-
-==========
---- CONFIGURING HOST ---
-
+### Assign the domain to the VM
+Log into the VM through SSH.
 sudo /home/bitnami/apps/discourse/bnconfig --machine_hostname DOMAINNAME
+
+### Enable HTTPS
+
+### Get SSH certificates from Let's Encrypt
+
+```
+cd / tmp
+git clone https://github.com/certbot/certbot
+cd certbot
+```
+
+./certbot-auto certonly --webroot -w /opt/bitnami/apps/discourse/htdocs/ -d dscommunitywebappdevetest.com -d www.dscommunitywebappdevetest.com -d forum.dscommunitywebappdevetest.com
+
+sudo ln -s /etc/letsencrypt/live/dscommunitywebappdevetest.com/fullchain.pem /opt/bitnami/apache2/conf/server.crt
+sudo ln -s /etc/letsencrypt/live/dscommunitywebappdevetest.com/privkey.pem /opt/bitnami/apache2/conf/server.key
+
