@@ -27,7 +27,7 @@ sudo /home/bitnami/apps/discourse/bnconfig --machine_hostname DOMAINNAME
 
 ### Enable HTTPS
 
-### Get SSH certificates from Let's Encrypt
+### Configure Let's Encrypt certificates
 
 Install certbot
 ```
