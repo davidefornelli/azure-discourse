@@ -23,7 +23,14 @@ image
 
 ### Assign the domain to the VM
 Log into the VM through SSH.
+```
 sudo /home/bitnami/apps/discourse/bnconfig --machine_hostname DOMAINNAME
+```
+
+In /opt/bitnami/apps/discourse/htdocs/config/discourse.conf set
+```
+hostname = 'DOMAIN'
+```
 
 ### Enable HTTPS
 
@@ -47,4 +54,15 @@ mv /opt/bitnami/apache2/conf/server.crt /opt/bitnami/apache2/conf/server.crt.bkp
 sudo ln -s /etc/letsencrypt/live/DOMAIN/fullchain.pem /opt/bitnami/apache2/conf/server.crt
 mv /opt/bitnami/apache2/conf/server.key /opt/bitnami/apache2/conf/server.key.bkp
 sudo ln -s /etc/letsencrypt/live/DOMAIN/privkey.pem /opt/bitnami/apache2/conf/server.key
+```
+
+### Enable HTTPS
+Force https url
+```
+vi /home/bitnami/apps/discourse/conf/httpd-prefix.conf
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
+
 ```
