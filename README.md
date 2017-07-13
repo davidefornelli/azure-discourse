@@ -8,10 +8,10 @@ Notes on how to create a [Discourse](https://www.discourse.org/) forum on [Azure
 ### Deploy Discourse VM
 The Discourse VM is offered by [Bitnami](https://bitnami.com/):
 
-Intall the VM on Azure's [Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.discourse?tab=Overview).
+Intall the VM on Azure's [Marketplace].
 
-
-[Retrieve the password](https://docs.bitnami.com/azure/faq/#how-to-find-application-credentials)
+1. Install [Bitnami's Discourse VM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.discourse?tab=Overview)
+2. [Retrieve the password](https://docs.bitnami.com/azure/faq/#how-to-find-application-credentials)
 
 ### Create a Domain
 Create a Azure webapp.
