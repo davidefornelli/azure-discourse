@@ -86,7 +86,8 @@ smtp_domain = 'mcsdatasciencecommunity.com'
 smtp_user_name = 'apikey' #Actually write aipkey as username
 smtp_password = 'SENDGRID_KEY'
 ```
-### Creae a new app on Azure
+## Active Directory Login
+### Azure - Create a new App on the new portal
 [Azure app](https://apps.dev.microsoft.com)
 Generate a Key and save it
 Add as Redirect URL https://DOMAIN/auth/oauth2_basic/callback
