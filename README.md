@@ -32,9 +32,6 @@ In /opt/bitnami/apps/discourse/htdocs/config/discourse.conf set
 hostname = 'DOMAIN'
 ```
 
-
-### Enable HTTPS
-
 ### Configure Let's Encrypt certificates
 
 This steps are based on the apache
@@ -72,5 +69,7 @@ vi /home/bitnami/apps/discourse/conf/httpd-prefix.conf
 RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
-
 ```
+
+### Set Emails
+### Set Oauth2 for Microsoft
