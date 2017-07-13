@@ -73,8 +73,10 @@ RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
 ### Create Email STMP
 Use [SendGrid](https://azuremarketplace.microsoft.com/it-IT/marketplace/apps/SendGrid.SendGrid) on Azure, whith 25k free emails per month.
 ### Set Email SMTP
+
 ### Creae a new app on Azure
 [Azure app](https://apps.dev.microsoft.com)
 Generate a Key and save it
-Add a Redirect URL: https://DOMAIN/auth/oauth2_basic/callback
+Add as Redirect URL https://DOMAIN/auth/oauth2_basic/callback
+Add as Homepage https://DOMAIN
 ### Set Oauth2 for Microsoft
