@@ -78,6 +78,7 @@ Generate a API Key: SendGrid -> Manage -> Settings -> API Keys
 vi /home/bitnami/apps/discourse/htdocs/config/discourse.conf
 
 #Add these lines
+
 smtp_address = "smtp.sendgrid.com"
 smtp_port = 587
 smtp_domain = 'mcsdatasciencecommunity.com'
