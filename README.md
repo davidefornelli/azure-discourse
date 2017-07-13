@@ -72,7 +72,7 @@ RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
 ```
 ### Create Email STMP
 Use [SendGrid](https://azuremarketplace.microsoft.com/it-IT/marketplace/apps/SendGrid.SendGrid) on Azure, whith 25k free emails per month.
-Get inside and create an api key.
+Generate a AIPI Key: SendGrid -> Manage -> Settings -> API Keys
 ### Set Email SMTP
 ```
 vi /home/bitnami/apps/discourse/htdocs/config/discourse.conf
@@ -82,7 +82,7 @@ smtp_address = "smtp.sendgrid.com"
 smtp_port = 587
 smtp_domain = 'mcsdatasciencecommunity.com'
 smtp_user_name = 'apikey' #Actually write aipkey as username
-smtp_password = 'SENGRID_KEY'
+smtp_password = 'SENDGRID_KEY'
 ```
 ### Creae a new app on Azure
 [Azure app](https://apps.dev.microsoft.com)
