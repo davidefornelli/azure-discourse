@@ -75,4 +75,6 @@ Use [SendGrid](https://azuremarketplace.microsoft.com/it-IT/marketplace/apps/Sen
 ### Set Email SMTP
 ### Creae a new app on Azure
 [Azure app](https://apps.dev.microsoft.com)
+Generate a Key and save it
+Add a Redirect URL: https://DOMAIN/auth/oauth2_basic/callback
 ### Set Oauth2 for Microsoft
