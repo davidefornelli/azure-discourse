@@ -31,7 +31,9 @@ In /opt/bitnami/apps/discourse/htdocs/config/discourse.conf set
 ```
 hostname = 'DOMAIN'
 ```
-
+### Discourse
+Set the domain in the forum:
+Admin -> Settings -> Required -> company domain -> DOMAIN
 ### Configure Let's Encrypt certificates
 
 This steps are based on the apache
@@ -89,6 +91,7 @@ smtp_password = 'SENDGRID_KEY'
 ## Active Directory Login
 ### Azure - Create a new App on the new portal
 [Azure app](https://apps.dev.microsoft.com)
+
 Generate a Key and save it
 Add as Redirect URL https://DOMAIN/auth/oauth2_basic/callback
 Add as Homepage https://DOMAIN
@@ -97,3 +100,4 @@ Add as Homepage https://DOMAIN
 sudo RAILS_ENV=production bundle exec rake plugin:install repo=https://github.com/discourse/discourse-oauth2-basic.git
 sudo RAILS_ENV=production bundle exec rake assets:precompile
 ```
+### Discourse - Set the oauth urls
