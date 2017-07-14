@@ -112,6 +112,16 @@ RewriteCond %{HTTPS} !=on
 RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
 ```
 
+### Enable HTTPS
+Force https url
+```
+vi /home/bitnami/apps/discourse/conf/httpd-prefix.conf
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
+```
+
 ## Active Directory Login
 ### Azure - Create a new App on the new portal
 [Azure app](https://apps.dev.microsoft.com)
