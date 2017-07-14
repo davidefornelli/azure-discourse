@@ -16,26 +16,65 @@ Intall the VM on Azure's [Marketplace].
 1. Install [Bitnami's Discourse VM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.discourse?tab=Overview)
 2. [Retrieve the password](https://docs.bitnami.com/azure/faq/#how-to-find-application-credentials)
 
+#### Set Static IP
+
+### Check if reachable
+http://VMIP
+
 ### Create a Domain
 Create a Azure webapp.
 Under custom domain, buy a new domain with the illustrated configurations:
 image
-
+In the DNS Management portal add the record
+image
 ### Assign the domain to the VM
 Log into the VM through SSH.
 ```
 sudo /home/bitnami/apps/discourse/bnconfig --machine_hostname DOMAIN
+
+sudo nano /etc/hosts #Add the following line
+ IP-ADDRESS DOMAIN
 ```
 
-In /opt/bitnami/apps/discourse/htdocs/config/discourse.conf set
-```
-hostname = 'DOMAIN'
-```
 ### Discourse
+Login into Discourse with:
+username:user
+password: [PASSWORD AT STEP X]
+
 Set the domain in the forum:
 Admin -> Settings -> Required -> company domain -> DOMAIN
-### Configure Let's Encrypt certificates
 
+## EMAIL
+### Azure - Create SMTP
+Use [SendGrid](https://azuremarketplace.microsoft.com/it-IT/marketplace/apps/SendGrid.SendGrid) on Azure, whith 25k free emails per month.
+Generate a API Key: SendGrid -> Manage -> Settings -> API Keys
+
+### Test
+'''
+curl --request POST \
+  --url https://api.sendgrid.com/v3/mail/send \
+  --header 'Authorization: Bearer YOUR_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --data '{"personalizations": [{"to": [{"email": "recipient@example.com"}]}],"from": {"email": "sender@example.com"},"subject": "Hello, World!","content": [{"type": "text/plain", "value": "Heya!"}]}'
+'''
+
+### VM - Set Email SMTP
+```
+vi /home/bitnami/apps/discourse/htdocs/config/discourse.conf
+
+#Add these lines
+
+smtp_address = "smtp.sendgrid.net"
+smtp_port = 587
+smtp_domain = 'DOMAIN'
+smtp_user_name = 'apikey' #Actually write aipkey as username
+smtp_password = 'SENDGRID_KEY'
+```
+
+## Test
+Admin -> Emails -> Settings
+
+### Configure Let's Encrypt certificates
 This steps are based on the apache
 [Install certbot](https://docs.bitnami.com/azure/components/apache/#how-to-install-the-certbot-client-for-the-lets-encrypt-certificate-authority)
 
@@ -72,22 +111,7 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
 ```
-## EMAIL
-### Azure - Create SMTP
-Use [SendGrid](https://azuremarketplace.microsoft.com/it-IT/marketplace/apps/SendGrid.SendGrid) on Azure, whith 25k free emails per month.
-Generate a API Key: SendGrid -> Manage -> Settings -> API Keys
-### VM - Set Email SMTP
-```
-vi /home/bitnami/apps/discourse/htdocs/config/discourse.conf
 
-#Add these lines
-
-smtp_address = "smtp.sendgrid.com"
-smtp_port = 587
-smtp_domain = 'mcsdatasciencecommunity.com'
-smtp_user_name = 'apikey' #Actually write aipkey as username
-smtp_password = 'SENDGRID_KEY'
-```
 ## Active Directory Login
 ### Azure - Create a new App on the new portal
 [Azure app](https://apps.dev.microsoft.com)
@@ -101,3 +125,7 @@ sudo RAILS_ENV=production bundle exec rake plugin:install repo=https://github.co
 sudo RAILS_ENV=production bundle exec rake assets:precompile
 ```
 ### Discourse - Set the oauth urls
+
+### Notes
+Restart servers
+sudo /opt/bitnami/ctlscript.sh restart
