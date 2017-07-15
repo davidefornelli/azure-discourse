@@ -125,17 +125,34 @@ RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
 ## Active Directory Login
 ### Azure - Create a new App on the new portal
 [Azure app](https://apps.dev.microsoft.com)
-
+Applicaton Id
+Application Secrets -> Generate New Password
 Generate a Key and save it
 Add as Redirect URL https://DOMAIN/auth/oauth2_basic/callback
 Add as Homepage https://DOMAIN
 ### VM - Install Oauth plugin
 ```
+cd /opt/bitnami/apps/discourse/htdocs
 sudo RAILS_ENV=production bundle exec rake plugin:install repo=https://github.com/discourse/discourse-oauth2-basic.git
 sudo RAILS_ENV=production bundle exec rake assets:precompile
 ```
 ### Discourse - Set the oauth urls
-
+[Docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols)
+Authorize url
+https://login.windows.net/microsoft.onmicrosoft.com/oauth2/v2.0/authorize?scope=https://graph.microsoft.com/User.Read
+Token Url
+https://login.windows.net/microsoft.onmicrosoft.com/oauth2/v2.0/token
+User Json
+https://graph.microsoft.com/v1.0/me
+oauth2 enabled: checked
+oauth2 client id: from app
+oauth2 client secret: app_key
+oauth2 json user id path: id
+oauth2 json username path: userPrincipalName
+oauth2 json name path: displayName
+oauth2 json email path: mail
+oauth2 email verified: checked
+oauth2 send auth header: checked
 ### Notes
 Restart servers
 sudo /opt/bitnami/ctlscript.sh restart
