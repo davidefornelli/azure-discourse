@@ -7,6 +7,14 @@ This guide has been tested on
 ### Discourse Notes
 -[Documentation](https://docs.bitnami.com/azure/apps/discourse/)
 
+### Useful commands
+```
+#Restart all services
+sudo /opt/bitnami/ctlscript.sh restart
+#Restart Apache only
+sudo /opt/bitnami/ctlscript.sh restart apache
+```
+
 
 ### Deploy Discourse VM
 The Discourse VM is offered by [Bitnami](https://bitnami.com/):
@@ -79,7 +87,10 @@ This steps are based on the apache
 [Install certbot](https://docs.bitnami.com/azure/components/apache/#how-to-install-the-certbot-client-for-the-lets-encrypt-certificate-authority)
 
 [Generate and install certificate](How to generate and install a Let's Encrypt certificate for your domain using the Certbot client?)
-
+If this doesn't work, use the DNS method:
+```
+ ./certbot-auto certonly --manual --preferred-challenges=dns -d DOMAIN
+```
 [Renew certificate](How to renew a Let's Encrypt certificate for your domain using the Certbot client?)
 
 Install certbot
@@ -91,7 +102,7 @@ cd certbot
 
 Download certificates
 ```
-./certbot-auto certonly --webroot -w /opt/bitnami/apps/discourse/htdocs/ -d DOMAIN
+./certbot-auto certonly --webroot -w /opt/bitnami/apps/discourse/htdocs/public -d DOMAIN
 ```
 
 Configure Apache tu use the new certificates
@@ -111,17 +122,6 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
 ```
-
-### Enable HTTPS
-Force https url
-```
-vi /home/bitnami/apps/discourse/conf/httpd-prefix.conf
-
-RewriteEngine On
-RewriteCond %{HTTPS} !=on
-RewriteRule ^/(.*) https://%{SERVER_NAME}/$1 [R,L]
-```
-
 ## Active Directory Login
 ### Azure - Create a new App on the new portal
 [Azure app](https://apps.dev.microsoft.com)
